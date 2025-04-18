@@ -1,6 +1,6 @@
 import { useState } from "react";
-import TextInputForm from "../TextInputForm";
-import { useNavigate, useNavigate } from "react-router-dom";
+import TextInputForm from "./TextInputForm";
+import { useNavigate } from "react-router-dom";
 
 
 function TextInputFormContainer() {
