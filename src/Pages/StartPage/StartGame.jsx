@@ -58,12 +58,14 @@ function StartGame({
                     </div>
                     
                     <div className="flex flex-col gap-3 w-full max-w-xs">
-                        <Button
-                            text="Change Word"
-                            buttonType="warning"
-                            onClickHandler={onCloseHandler}
-                            className="transform hover:scale-105 transition-all duration-300 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg"
-                        />
+                        {showChangeWord && (
+                            <Button
+                                text="Change Word"
+                                buttonType="warning"
+                                onClickHandler={onCloseHandler}
+                                className="transform hover:scale-105 transition-all duration-300 bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-bold py-3 px-6 rounded-lg shadow-lg"
+                            />
+                        )}
                         <Button
                             text="Undo Last Guess"
                             buttonType="secondary"
@@ -90,12 +92,6 @@ function StartGame({
                 title="😔 Game Over"
                 message={`You have lost the game. Try again!\nThe word was "${value.toUpperCase()}"`}
             />
-
-            {showChangeWord ? (
-                <button onClick={onCloseHandler}>
-                    Change Word
-                </button>
-            ) : null}
         </div>
     );
 }
