@@ -1,25 +1,16 @@
-/**
- * 
- * @param { The word which is given as input and is expected to be guessed } originalWord 
- * @param { Letters which are guessed by the user already } guessedLetters 
- * Ex: origionalWord: HUMBLE
- * guessedLetters: ['H', 'M', 'E']
- * 
- * return -> "H _ M _ E"
- */
-export function getMaskedString(originalWord, guessedLetters) {
-    //console.log("guessedLetters", guessedLetters)
-    guessedLetters = guessedLetters.map(letter => letter.toUpperCase()); // ['h', 'M', 'e'] ->['H', 'M', 'E']
-
-    const guessedLetterSet = new Set(guessedLetters); // {'H', 'M', 'E'}
-
-    const result = originalWord.toUpperCase().split('').map(char => {
-        if(guessedLetterSet.has(char)) {
-            return char;
-        } else {
-            return "_";
+function getAllMaskedChars(originalWord, guessedLetter){
+    originalWord = originalWord.toUpperCase();
+    guessedLetter = guessedLetter.toUpperCase();
+    let maskedWord = '';
+    const guessedLetterSet = new Set(guessedLetter);
+    for(let i = 0 ; i < originalWord.length; i++){
+        if(guessedLetterSet.has(originalWord[i])){
+            maskedWord += originalWord[i];
+        }else{
+            maskedWord += '_';
         }
-    }); // ['H', '_', 'M', '_', '_', 'E']
-
-    return result;
+    }
+    return maskedWord;
 }
+
+export default getAllMaskedChars;

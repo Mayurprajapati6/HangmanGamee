@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/start' element={<StartGameContainer />} />
         <Route path='/play' element={<PlayGame />} />
+        
         <Route path='/multiplayer' element={<Home/>} />
         <Route path='/' element={<SelectPlayerContainer/>} />
       </Routes>

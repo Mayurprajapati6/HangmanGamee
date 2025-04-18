@@ -1,19 +1,19 @@
-import { getMaskedString } from "./MaskingUtility";
+import getAllMaskedChars from "./maskingUtility";
 
-function MaskedText() {
-    const maskedString = getMaskedString(text,guessedLetters);
-
-    return (
-        <div className="flex flex-wrap flex-justify-center text-orange-500 text-2xl font-bold">
-            {maskedString.map((letter , index) => {
-                return (
-                    <span key={index} className="mx-1">
-                        {letter}
-                    </span>
-                )
-            })}
-        </div>
-    )
+function MaskedText({originalWord , guessedLetter}){
+    let maskedWord = getAllMaskedChars(originalWord, guessedLetter);
+    return(
+        <>
+            <div className="text-center flex justify-center items-center">
+                {maskedWord.split('').map((element, index)=>{
+                    return(
+                        <p key={index} className="text-3xl tracking-wider ml-[20px] font-semibold text-pink-100">{element}</p>
+                    )
+                })}
+            </div>
+            
+        </>
+    );
 }
 
 export default MaskedText;

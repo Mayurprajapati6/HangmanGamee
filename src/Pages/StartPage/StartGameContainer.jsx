@@ -13,28 +13,37 @@ function StartGameContainer(){
     const [isGameOver, setIsGameOver] = useState(false);
     const Alphabets = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
     let AlphabetsSet = new Set(Alphabets);
-    function  onLetterClickHandler(letter){
-        setGuessedLetter(guessedLetter => {
-            if (guessedLetter.includes(letter)) {
-                return guessedLetter;
+    function onLetterClickHandler(letter) {
+        if (!isGameOver && !isGameWon && !guessedLetter.includes(letter)) {
+            setGuessedLetter(prev => prev + letter);
+            
+            if (!value.toUpperCase().includes(letter)) {
+                setIncorrectGuessedLetter(prev => prev + 1);
             }
-            return guessedLetter + letter;
-        });
-        if(!value.toUpperCase().includes(letter) && !guessedLetter.includes(letter)){
-            console.log('Incorrect Guess');
-            setIncorrectGuessedLetter(incorrectGuessedLetter => incorrectGuessedLetter + 1);
         }
     }
 
     function onCloseHandler(){
-        setIsGameOver(false);
-        setIsGameWon(false);
-        setGuessedLetter('');
-        setIncorrectGuessedLetter(0);
-        let data = wordList[Math.floor(Math.random()*wordList.length)];
+        // Get new random word
+        let data = wordList[Math.floor(Math.random() * wordList.length)];
+        while(data.wordValue === value) { // Ensure we get a different word
+            data = wordList[Math.floor(Math.random() * wordList.length)];
+        }
+        
+        // Just update word and reset game state
         setValue(data.wordValue);
         setDefination(data.wordHint);
+        setGuessedLetter('');
+        setIncorrectGuessedLetter(0);
+        setIsGameOver(false);
+        setIsGameWon(false);
     }
+
+    const onUndoHandler = () => {
+        if (guessedLetter.length > 0) {
+            setGuessedLetter(prevLetters => prevLetters.slice(0, -1));
+        }
+    };
 
     useEffect(() => {
         const handleKeyPress = (e) => {
@@ -74,6 +83,7 @@ function StartGameContainer(){
             defination={defination}
             incorrectGuessedLetter={incorrectGuessedLetter}
             onCloseHandler={onCloseHandler}
+            onUndoHandler={onUndoHandler}
         >
         </StartGame>
     );

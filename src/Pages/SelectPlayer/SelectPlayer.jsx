@@ -1,24 +1,38 @@
-import Button from "../../Components/Buttons/Button";
-function SelectPlayer({SinglePlayerClickHandler, MultiPlayerClickHandler}) {
-  return (
-    <div className="flex flex-col bg-black p-5 gap-20 justify-center items-center h-full">
-        <div className="flex flex-col bg-yellow-500 rounded-md p-14 gap-20 justify-center items-center h-max">
-            <h1 className="text-white tracking-wide font-semibold text-center text-7xl">HangMan - Game</h1>
-            <h1 className="text-5xl  text-black font-semibold" >SELECT PLAYER</h1>
-            <div className="flex gap-6">
-            <Button
-            text="Single Player"
-            buttonType="primary"
-            onClickHandler={SinglePlayerClickHandler}
-            ></Button>
-            <Button
-            text="Multi Player"
-            buttonType="warning"
-            onClickHandler={MultiPlayerClickHandler}
-            ></Button>
+function SelectPlayer({ SinglePlayerClickHandler, MultiPlayerClickHandler }) {
+    return (
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 flex items-center justify-center px-4">
+            <div className="max-w-md w-full space-y-8 p-8 bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl">
+                <div className="text-center">
+                    <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 animate-pulse">
+                        Hangman
+                    </h1>
+                    <p className="text-xl text-gray-300 mb-8">
+                        Test your vocabulary and save the hanging man!
+                    </p>
+                </div>
+
+                <div className="space-y-4">
+                    <button
+                        onClick={SinglePlayerClickHandler}
+                        className="w-full py-4 px-6 bg-green-500 hover:bg-green-600 text-white text-lg font-semibold rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50"
+                    >
+                        Single Player
+                    </button>
+
+                    <button
+                        onClick={MultiPlayerClickHandler}
+                        className="w-full py-4 px-6 bg-blue-500 hover:bg-blue-600 text-white text-lg font-semibold rounded-xl shadow-lg transform transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50"
+                    >
+                        Multiplayer
+                    </button>
+                </div>
+
+                <p className="text-gray-400 text-center text-sm mt-8">
+                    Choose your game mode and start playing!
+                </p>
             </div>
         </div>
-    </div>
-  );
+    );
 }
+
 export default SelectPlayer;
